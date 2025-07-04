@@ -8,7 +8,10 @@ export default defineConfig(({ command }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: 'index.html',
+        input: {
+          main: 'index.html',
+          agronomyDetails: 'public/agronomy-details.html'
+        },
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
