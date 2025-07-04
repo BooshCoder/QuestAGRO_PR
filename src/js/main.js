@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
 
-  const header = await loadPartial('/partials/header.html');
-  const footer = await loadPartial('/partials/footer.html');
+  const header = await loadPartial('partials/header.html');
+  const footer = await loadPartial('partials/footer.html');
 
   document.getElementById('header')?.appendChild(header);
   // Підʼєднуємо burger menu тільки після вставки header в DOM
@@ -68,12 +68,12 @@ if (navLinks.length > 0) {
   document.getElementById('footer')?.appendChild(footer);
   
   const sections = {
-    company: '/partials/company.html',
-    agronomy: '/partials/agronomy.html',
-    precision: '/partials/precision.html',
-    education: '/partials/education.html',
-    feedback: '/partials/feedback.html',
-    'agronomy-details': '/partials/agronomy-details-content.html'
+    company: 'partials/company.html',
+    agronomy: 'partials/agronomy.html',
+    precision: 'partials/precision.html',
+    education: 'partials/education.html',
+    feedback: 'partials/feedback.html',
+    'agronomy-details': 'partials/agronomy-details-content.html'
   };
 
   for (const [id, path] of Object.entries(sections)) {
