@@ -4,6 +4,7 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
+    base: '/QuestAGRO_PR/',
     build: {
       sourcemap: true,
       rollupOptions: {
