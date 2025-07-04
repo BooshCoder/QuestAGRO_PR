@@ -29,4 +29,28 @@ fs.readdirSync(distDir)
     console.log(`✅ Додано CSS у ${htmlFile}`);
   });
 
+// 3. Додаємо main-*.js у всі HTML-файли dist
+const mainJsFile = fs.readdirSync(assetsDir).find(f => f.startsWith('main-') && f.endsWith('.js'));
+if (!mainJsFile) {
+  console.error('❌ JS файл не знайдено у dist/assets/');
+  process.exit(1);
+}
+const jsSrc = `assets/${mainJsFile}`;
+
+fs.readdirSync(distDir)
+  .filter(f => f.endsWith('.html'))
+  .forEach(htmlFile => {
+    const htmlPath = path.join(distDir, htmlFile);
+    let html = fs.readFileSync(htmlPath, 'utf8');
+    // Якщо скрипт вже є — пропускаємо
+    if (html.includes(jsSrc)) return;
+    // Вставляємо перед </body>
+    html = html.replace(
+      /<\/body>/i,
+      `  <script type="module" src="${jsSrc}"></script>\n</body>`
+    );
+    fs.writeFileSync(htmlPath, html, 'utf8');
+    console.log(`✅ Додано JS у ${htmlFile}`);
+  });
+
 console.log('🎉 Всі HTML-файли у dist тепер мають лінк на CSS!'); 
